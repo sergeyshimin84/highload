@@ -1,0 +1,12 @@
+{
+  "name": "lesson1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lesson1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node lesson1.js"
+  },
+  "author": "Shimin S.V.",
+  "license": "ISC"
+}

@@ -30,7 +30,7 @@
       "executor": "@nrwl/node:execute",
       "options": {
         "buildTarget": "api:build",
-        "port": 3333
+        "port": 3001
       }
     },
     "lint": {

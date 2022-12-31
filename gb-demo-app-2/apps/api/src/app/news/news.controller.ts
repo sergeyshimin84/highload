@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Header, Post } from '@nestjs/common';
 
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty } from '@nestjs/class-validator';
 
 export class CreateNewsDto {
   @IsNotEmpty()

@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Header, Post } from '@nestjs/common';
 
 import { IsNotEmpty } from '@nestjs/class-validator';
+import { LocalStorage } from "ts-localstorage";
 
 export class CreateNewsDto {
   @IsNotEmpty()
@@ -16,8 +17,11 @@ export class NewsController {
   async getNews() {
     return new Promise(resolve => {
       const news = Object.keys([...Array(20)])
-        .map(key => Number(key) + 1)
-        .map(n => ({
+        news[0]
+        localStorage.setItem("news", JSON.stringify(news))
+        let storedNews = JSON.parse(localStorage.getItem("news"))
+        storedNews(key => Number(key) + 1)
+        storedNews(n => ({
           id: n,
           title: `Важная новость ${n}`,
           description: (rand => ([...Array(rand(1000))].map(() => rand(10**16).toString(36).substring(rand(10))).join(' ')))(max => Math.ceil(Math.random() * max)),

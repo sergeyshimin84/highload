@@ -33,40 +33,40 @@ console.timeEnd('Duration')
 /**
  * N-API
  */
-console.log('\n# Native addon with N-API')
-console.time('Duration')
-grouped = NativeNapi.groupBy(data, 'group', ['number', 'number2'])
-console.timeEnd('Duration')
+// console.log('\n# Native addon with N-API')
+// console.time('Duration')
+// grouped = NativeNapi.groupBy(data, 'group', ['number', 'number2'])
+// console.timeEnd('Duration')
 // console.log(JSON.stringify(grouped, null, 2));
 
 /**
  * WebAssembly Embind
  */
-var EmbindModule = require('./addons/webassembly-embind/group_by.js');
+// var EmbindModule = require('./addons/webassembly-embind/group_by.js');
 
-EmbindModule['onRuntimeInitialized'] = function(a) {
-    console.log('\n# WebAssembly with Embind binding')
-    console.time('Duration')
-    grouped = EmbindModule.groupBy(data, 'group', ['number', 'number2']);
-    console.timeEnd('Duration')
+// EmbindModule['onRuntimeInitialized'] = function(a) {
+//     console.log('\n# WebAssembly with Embind binding')
+//     console.time('Duration')
+//     grouped = EmbindModule.groupBy(data, 'group', ['number', 'number2']);
+//     console.timeEnd('Duration')
     // console.log(JSON.stringify(grouped, null, 2));
-};
+// };
 
 /**
  * WebAssembly WebIdl (WIP)
  */
-var WebidlModule = require('./addons/webassembly-webidl/group_by.js');
+// var WebidlModule = require('./addons/webassembly-webidl/group_by.js');
 
-WebidlModule['onRuntimeInitialized'] = function(a) {
-    console.log('\n# WebAssembly with WebIDL binding')
-    var CollectionUtils = new WebidlModule.CollectionUtils();
+// WebidlModule['onRuntimeInitialized'] = function(a) {
+//     console.log('\n# WebAssembly with WebIDL binding')
+//     var CollectionUtils = new WebidlModule.CollectionUtils();
 
-    console.time('Duration')
-    var res = CollectionUtils.group_by('Fake result. Work in progress', 42);
-    console.timeEnd('Duration')
+//     console.time('Duration')
+//     var res = CollectionUtils.group_by('Fake result. Work in progress', 42);
+//     console.timeEnd('Duration')
 
     // console.log('Result:', res)
-};
+// };
 
 // const fs = require('fs');
 // const wasmBuffer = fs.readFileSync('./addons/webassembly-embind/group_by.wasm');

@@ -25,10 +25,10 @@ let grouped;
 /**
  * JavaScript
  */
-console.log('\n# JavaScript')
-console.time('Duration')
-grouped = groupBy(data, 'group', ['number', 'number2'])
-console.timeEnd('Duration')
+// console.log('\n# JavaScript')
+// console.time('Duration')
+// grouped = groupBy(data, 'group', ['number', 'number2'])
+// console.timeEnd('Duration')
 
 /**
  * N-API
@@ -42,15 +42,15 @@ console.timeEnd('Duration')
 /**
  * WebAssembly Embind
  */
-// var EmbindModule = require('./addons/webassembly-embind/group_by.js');
+var EmbindModule = require('./addons/webassembly-embind/group_by.js');
 
-// EmbindModule['onRuntimeInitialized'] = function(a) {
-//     console.log('\n# WebAssembly with Embind binding')
-//     console.time('Duration')
-//     grouped = EmbindModule.groupBy(data, 'group', ['number', 'number2']);
-//     console.timeEnd('Duration')
-    // console.log(JSON.stringify(grouped, null, 2));
-// };
+EmbindModule['onRuntimeInitialized'] = function(a) {
+    console.log('\n# WebAssembly with Embind binding')
+    console.time('Duration')
+    grouped = EmbindModule.groupBy(data, 'group', ['number', 'number2']);
+    console.timeEnd('Duration')
+    console.log(JSON.stringify(grouped, null, 2));
+};
 
 /**
  * WebAssembly WebIdl (WIP)
@@ -65,7 +65,7 @@ console.timeEnd('Duration')
 //     var res = CollectionUtils.group_by('Fake result. Work in progress', 42);
 //     console.timeEnd('Duration')
 
-    // console.log('Result:', res)
+//     console.log('Result:', res)
 // };
 
 // const fs = require('fs');

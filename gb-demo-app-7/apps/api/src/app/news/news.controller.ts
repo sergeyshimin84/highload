@@ -1,6 +1,10 @@
-import { Body, Controller, Get, Header, Post } from '@nestjs/common';
-
+import { Body, Controller, Get, Header, Post, Param } from '@nestjs/common';
 import { IsNotEmpty } from 'class-validator';
+import memjs from 'memjs';
+import Redis from 'ioredis';
+
+const memcached = memjs.Client.create();
+const redis = new Redis();
 
 export class CreateNewsDto {
   @IsNotEmpty()
@@ -39,5 +43,19 @@ export class NewsController {
         resolve({ id: Math.ceil(Math.random() * 1000), ...peaceOfNews });
       }, 100)
     });
+  }
+
+  @Get('test-memcached/:searchtext')
+  async testMemcached(@Param('searchtext') searchtext: string) {
+    memcached.set("foo", searchtext, 10);
+
+    return await memcached.get("foo").then(a => a.value.toString());
+  }
+
+  @Get('test-redis/:searchtext')
+  async testRedis(@Param('searchtext') searchtext: string) {
+    redis.set("foo", searchtext);
+
+    return await redis.get("foo");
   }
 }
